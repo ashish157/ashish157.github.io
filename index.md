@@ -1,37 +1,89 @@
-## Welcome to GitHub Pages
+# QtKnobs
+QtKnobs is a Qt and QML based Library/Plugin which provides different types of Knobs.
 
-You can use the [editor on GitHub](https://github.com/ashish157/ashish157.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+Screenshots:
+- ###### Types
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+  ![ScreenShot](https://raw.githubusercontent.com/ashish157/Knobs-n-Dials-QML/5c5e347b649606533a95330b9cafb3b4eb4b8155/QtKnobs/screens/alltypes.png)
 
-### Markdown
+- ###### Percent View
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+  ![ScreenShot](https://raw.githubusercontent.com/ashish157/Knobs-n-Dials-QML/5c5e347b649606533a95330b9cafb3b4eb4b8155/QtKnobs/screens/percent.png)
 
-```markdown
-Syntax highlighted code block
+- ###### Minimum & Maximum values
 
-# Header 1
-## Header 2
-### Header 3
+  ![ScreenShot](https://raw.githubusercontent.com/ashish157/QtKnobs/master/QtKnobs/screens/minandmax.png)
+  
+- ###### Various Sizes
 
-- Bulleted
-- List
+  ![ScreenShot](https://raw.githubusercontent.com/ashish157/Knobs-n-Dials-QML/5c5e347b649606533a95330b9cafb3b4eb4b8155/QtKnobs/screens/sizes.png)
+  
+- ###### Customize
 
-1. Numbered
-2. List
+  ![ScreenShot](https://raw.githubusercontent.com/ashish157/Knobs-n-Dials-QML/5c5e347b649606533a95330b9cafb3b4eb4b8155/QtKnobs/screens/custom.png)
 
-**Bold** and _Italic_ and `Code` text
+# List of properties
+* size
+* value
+* minimumValue
+* maximumValue
+* percent
+* readOnly { true, false }
+* mode { Knob.Normal, Knob.Percent }
+* style { Knob.Pie, Knob.Arc, Knob.Needle }
+* pieType { Knob.Flat, Knob.Curve  } (**when style = Knob.Pie**)
+* needleType { Knob.Point, Knob.Round, Knob.Groove  } (**when style = Knob.Needle**)
+* color (**knob color**)
+* backgroundColor (**back dial color**)
+* foregroundColor (**front dial color**)
+* borderColor
+* textColor
+* meter { true, false } (**simple meter**)
+* pieMultiColor (some fun)
+ 
+# Requirement
+Qt >= 5.3
 
-[Link](url) and ![Image](src)
+# Building
+* Clone
+* Run qmake && make && make install
+
+The compiled plugin (libqtknobsplugin.so on .nix systems) would be in directory **imports/QtKnobs** with file **qmldir**.
+
+# Use
+If you **make install** then you need not do anything. But just in case if you want it to be included in your application then: 
+* Copy directory **imports** to your project location  
+* To make the engine to search for this module, add the path where the **imports** directory is using *addImportPath*.  
+For eg. If the directory **imports** is at location */home/ashish/KnobsTest* then,
+```
+QQuickView view;
+view.engine()->addImportPath("/home/ashish/KnobsTest/imports");
+view.show();
+```
+* Additionally, to make QtCreator aware of it (and to get rid of the annoying **QML module not found** during import) add the path in .pro file,
+```
+QML_IMPORT_PATH = /home/ashish/KnobsTest/imports
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+# Examples
 
-### Jekyll Themes
+* A simple Knob:
+  
+  ```
+  import QtQuick 2.0
+  import QtKnobs 1.0
+  Knob {
+    value: 25
+  }
+  ```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ashish157/ashish157.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+  ![ScreenShot](https://raw.githubusercontent.com/ashish157/Knobs-n-Dials-QML/5c5e347b649606533a95330b9cafb3b4eb4b8155/QtKnobs/screens/default.png)
 
-### Support or Contact
+   You can find more examples in QtKnobs/examples/main.qml
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# License
+
+MIT
+
+# Contact
+Feel free to contact me for any questions at ashishd157 at gmail.com.
